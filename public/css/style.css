@@ -1,0 +1,1537 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.form-container {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #00bcd4);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+    font-weight: 600;
+    font-size: 2.2rem;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #eee;
+    gap: 1rem;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #007bff;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #007bff;
+}
+
+.form {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.form.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #007bff 0%, #00bcd4 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+.btn i {
+    font-size: 1.2rem;
+}
+
+.student-only {
+    display: none;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.student-only.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments for login/register */
+@media (max-width: 576px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        white-space: normal;
+    }
+
+    .tabs {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .tab-btn {
+        padding: 0.8rem;
+    }
+}
+
+/* Dashboard Styles */
+.dashboard {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+.header-content {
+    width: 100%;    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.logo i {
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+.logo h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+}
+
+.user-info span {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    height: 40px;
+    line-height: 1;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+
+.logout-btn i {
+    font-size: 1rem;
+}
+
+.dashboard-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem 2rem;
+}
+
+/* Tabs Styles */
+.tabs-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    margin-bottom: -2px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Lectures Grid */
+.lectures-section {
+    margin-bottom: 2.5rem;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;    
+    /* margin: 0 auto 2.5rem; */
+}
+
+.lectures-section h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f0f0f0;
+    text-align: center;
+}
+
+.lectures-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    justify-content: flex-start;
+}
+
+.lecture-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #f0f0f0;
+    min-width: 280px;
+    max-width: 320px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.lecture-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lecture-card.ongoing {
+    border-left: 4px solid #4CAF50;
+    background-color: #f8fff8;
+}
+
+.lecture-card.past {
+    border-left: 4px solid #9E9E9E;
+    background-color: #f8f8f8;
+    opacity: 0.9;
+}
+
+.lecture-card.future {
+    border-left: 4px solid #2196F3;
+    background-color: #f8f9ff;
+}
+
+.lecture-title {
+    color: #333;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lecture-info {
+    color: #666;
+    margin: 0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lecture-info i {
+    color: #888;
+    font-size: 0.9rem;
+    min-width: 16px;
+}
+
+.lecture-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lecture-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lecture-actions .btn i {
+    font-size: 1rem;
+}
+
+.no-lectures-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px dashed #ddd;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.no-lectures-section h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: none;
+    padding: 0;
+}
+
+.no-lectures-section p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.create-lecture-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 0 auto;
+}
+
+.create-lecture-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.create-lecture-btn i {
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .lectures-section {
+        padding: 1.5rem;
+        margin: 0 1rem 2.5rem;
+    }
+
+    .lectures-grid {
+        gap: 0.75rem;
+    }
+
+    .lecture-card {
+        min-width: 240px;
+        padding: 1rem;
+    }
+
+    .lecture-title {
+        font-size: 1rem;
+    }
+
+    .lecture-info {
+        font-size: 0.85rem;
+    }
+
+    .no-lectures-section {
+        padding: 2rem 1rem;
+        margin: 0 1rem;
+    }
+}
+
+/* Attendance Cards */
+.attendance-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-header i {
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #333;
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-body p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.primary-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3;
+}
+
+.secondary-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.secondary-btn:hover {
+    background-color: #5a6268;
+}
+
+/* QR Code Modal Styles */
+#qrCodeModal .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    min-height: 400px;
+}
+
+.qr-code {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.qr-code img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fff;
+    margin-bottom: 1.5rem;
+}
+.qr-code-card{
+    cursor: pointer;
+}
+.qr-info {
+    text-align: left;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.qr-info p {
+    margin: 0.5rem 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.qr-info strong {
+    color: #333;
+    font-weight: 500;
+}
+
+.qr-instructions {
+    text-align: center;
+    color: #666;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+    #qrCodeModal .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .qr-code img {
+        max-width: 250px;
+    }
+}
+
+/* Attendance Report */
+.attendance-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.summary-card i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #007bff;
+}
+
+.summary-card h4 {
+    margin: 0.25rem 0;
+    color: #333;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.summary-card span {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.attendance-table-container {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.attendance-table th,
+.attendance-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.attendance-table th {
+    background-color: #f8f9fa;
+    font-weight: 500;
+    color: #333;
+    position: sticky;
+    top: 0;
+    font-size: 0.95rem;
+}
+
+.attendance-table td {
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.attendance-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Specific styles for create lecture modal */
+#createLectureModal .modal-content {
+    width: 70%;
+    max-width: 70vw;
+    margin: 2% auto;
+}
+
+/* Specific styles for attendance report modal */
+#attendanceReportModal .modal-content {
+    width: 90%;
+    max-width: 90vw;
+    margin: 2% auto;
+}
+
+/* Table container styles */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 1.5rem;
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.attendance-table th,
+.attendance-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.attendance-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+    position: sticky;
+    top: 0;
+}
+
+.attendance-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Status badge styles */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.present {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.absent {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Lecture header row styles */
+.lecture-header {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.lecture-header td {
+    padding: 1rem;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Summary cards styles */
+.summary-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card h3 {
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.summary-card p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    z-index: 1;
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95vw;
+        height: 80vh;
+    }
+    
+    .attendance-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 0 1rem;
+        height: 60px;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+
+    .user-info span {
+        display: none;
+    }
+
+    .logout-btn {
+        height: 36px;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .dashboard-content {
+        padding: 5rem 1rem 1rem;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .attendance-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .student-dashboard {
+        padding-top: 5rem;
+    }
+}
+
+/* Teacher Dashboard Styles */
+.teacher-dashboard {
+    padding: 2rem;
+}
+
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.action-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #00bcd4);
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.action-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #007bff;
+    transition: transform 0.3s ease;
+}
+
+.action-card:hover i {
+    transform: scale(1.1);
+}
+
+.action-card h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.action-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Teacher Stats Section */
+.teacher-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007bff 0%, #00bcd4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.stat-info h4 {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.stat-info span {
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Recent Activity Section */
+.recent-activity {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.activity-header h3 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.activity-item:hover {
+    transform: translateX(5px);
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e3f2fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #007bff;
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-content h4 {
+    color: #333;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.activity-content p {
+    color: #666;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.activity-time {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+/* Responsive adjustments for teacher dashboard */
+@media (max-width: 768px) {
+    .teacher-dashboard {
+        padding: 1rem;
+    }
+
+    .action-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+}
+
+/* Student Dashboard Styles */
+.student-dashboard {
+    padding-top: 6rem;
+}
+
+.student-dashboard .dashboard-content {
+    padding-top: 0;
+}
+
+/* QR Scanner Styles */
+.qr-scanner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+#qrScanner {
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.scan-result {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+.scan-result.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.scan-result.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Student Profile Card */
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007bff 0%, #00bcd4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.profile-info h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.profile-info p {
+    color: #666;
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+}
+
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.detail-group {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.detail-group h4 {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.detail-group p {
+    color: #333;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Student Schedule */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.schedule-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #007bff;
+}
+
+.schedule-card.upcoming {
+    border-left-color: #28a745;
+}
+
+.schedule-card.past {
+    border-left-color: #6c757d;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.schedule-title {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.schedule-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-upcoming {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-past {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+.schedule-info {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.schedule-time {
+    color: #007bff;
+    font-weight: 500;
+}
+
+/* Responsive adjustments for student dashboard */
+@media (max-width: 768px) {
+    .student-dashboard {
+        padding: 1rem;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+    }
+
+    .schedule-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* QR Scanner Modal Styles */
+#qrScannerModal .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    min-height: 400px;
+}
+
+#qrScanner {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#qrScannerModal h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#scanResult {
+    margin-top: 1.5rem;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+#scanResult p {
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+#scanResult p.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+#scanResult p.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+@media (max-width: 768px) {
+    #qrScannerModal .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    #qrScanner {
+        height: 300px;
+    }
+}
+
+.welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.welcome-text h1 {
+    margin: 0;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.welcome-text p {
+    margin: 0.5rem 0 0;
+    color: #666;
+    font-size: 1rem;
+}
+
+.create-lecture-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.view-attendance-btn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+    margin-left: 16px;
+}
+
+.view-attendance-btn:hover {
+    background-color: #1976D2;
+}
+
+.view-attendance-btn i {
+    font-size: 18px;
+}
+
+.welcome-section .buttons {
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .welcome-section {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .create-lecture-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Toast Styles */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.toast.success {
+    background-color: #4CAF50;
+}
+
+.toast.info {
+    background-color: #2196F3;
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+} 

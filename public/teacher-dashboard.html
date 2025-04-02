@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="header-content">
+          <div
+            class="header-title"
+            style="display: flex; align-items: center; gap: 1rem"
+          >
+            <i
+              class="fas fa-graduation-cap"
+              style="font-size: 2.5rem; color: #007bff"
+            ></i>
+            <div>
+              <h5 class="dashboard-title" style="font-size: 2rem">
+                Student Management System by QR
+              </h5>
+             
+            </div>
+          </div>
+          <div class="user-info">
+            <span id="teacherName">Teacher</span>
+            <button class="logout-btn" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+    <!-- <header class="dashboard-header">
+        <div class="logo">
+            
+            <i class="fas fa-graduation-cap"></i>
+            <h1>Attendance System</h1>
+        </div>
+        <div class="user-info">
+            <span id="teacherName">Teacher</span>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+    </header> -->
+
+    <main class="dashboard-content">
+        <div class="welcome-section">
+            <div class="welcome-text">
+                <h1>Welcome, <span id="teacherName">Teacher</span>!</h1>
+                <p>Manage your lectures and track attendance</p>
+            </div>
+            <div class="buttons">
+                <button class="create-lecture-btn" onclick="showCreateLectureModal()">
+                    <i class="fas fa-plus-circle"></i>
+                    Create Lecture
+                </button>
+                <button class="view-attendance-btn" onclick="viewAttendanceReport()">
+                    <i class="fas fa-chart-bar"></i>
+                    View Attendance Report
+                </button>
+            </div>
+        </div>
+
+        <div class="lectures-section">
+            <div id="lecturesList" class="lectures-grid">
+                <!-- Lectures will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Lecture Modal -->
+    <div id="createLectureModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCreateLectureModal()">&times;</span>
+            <h2>Create New Lecture</h2>
+            <form id="createLectureForm">
+                <div class="form-group">
+                    <label for="lectureTitle">Title</label>
+                    <input type="text" id="lectureTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="lectureDescription">Description</label>
+                    <input  id="lectureDescription" name="description" style="width: 100%;" required>
+
+                    <!-- <textarea id="lectureDescription" name="description" style="width: 100%;" required></textarea> -->
+                </div>
+                <div class="form-group">
+                    <label for="lectureDate">Date</label>
+                    <input type="date" id="lectureDate" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="lectureStartTime">Start Time</label>
+                    <input type="time" id="lectureStartTime" name="startTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="lectureEndTime">End Time</label>
+                    <input type="time" id="lectureEndTime" name="endTime" required>
+                </div>
+                <button type="submit" class="btn primary-btn">Create Lecture</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- QR Scanner Modal -->
+    <div id="qrScannerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeQRScannerModal()">&times;</span>
+            <h2>Scan Student QR Code</h2>
+            <div id="qrScanner"></div>
+            <div id="scanResult"></div>
+        </div>
+    </div>
+
+    <!-- Attendance Report Modal -->
+    <div id="attendanceReportModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAttendanceReportModal()">&times;</span>
+            <h2>Attendance Report</h2>
+            
+            <div class="table-container">
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Student ID</th>
+                            <th>Department</th>
+                            <th>Marked At</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTableBody">
+                        <!-- Attendance data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/teacher-dashboard.js"></script>
+</body>
+</html> 
