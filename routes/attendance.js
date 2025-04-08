@@ -190,11 +190,14 @@ router.get('/teacher-report', verifyToken, async (req, res) => {
         }).sort({ date: -1, startTime: -1 });
 
         // Get all students from the same department
+        // const students = await User.find({ role: 'teacher' });
+        // console.log('All students:', students);
+        // Get all students from the same department
         const departmentStudents = await User.find({ 
             role: 'student',
             department: teacher.department 
         }).select('_id name studentId department');
-
+        console.log(departmentStudents);
         // Get all attendance records for these lectures
         const attendanceRecords = await Attendance.find({
             lecture: { $in: lectures.map(l => l._id) }
@@ -205,7 +208,12 @@ router.get('/teacher-report', verifyToken, async (req, res) => {
 
         // Create a map of student attendance by lecture
         const attendanceMap = new Map();
-        attendanceRecords.forEach(record => {
+        attendanceRecords?.forEach(record => {
+            // Skip records with missing student or lecture data
+            if (!record.student || !record.lecture) {
+                console.log('Skipping attendance record with missing data:', record);
+                return;
+            }
             const key = `${record.student._id}-${record.lecture._id}`;
             attendanceMap.set(key, record);
         });
